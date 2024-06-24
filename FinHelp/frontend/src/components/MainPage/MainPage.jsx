@@ -15,8 +15,8 @@ import {
 } from "@chakra-ui/react";
 
 const customStyles = {
-  backgroundColor: "#13161F", // Change background color to #13161F
-  borderRadius: "9999px", // Full border radius
+  backgroundColor: "#13161F",
+  borderRadius: "9999px", 
 };
 
 const MainPage = () => {
@@ -28,7 +28,7 @@ const MainPage = () => {
     closingPrice: "Loading...",
   });
 
-  const [exchange, setExchange] = useState(""); // State variable for selected exchange
+  const [exchange, setExchange] = useState(""); 
 
   const fetchData = async () => {
     try {
@@ -44,7 +44,7 @@ const MainPage = () => {
         livePrice,
         dayHigh,
         dayLow,
-        closingPrice: "500", // Update closing price based on actual data
+        closingPrice: "500", 
       });
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -52,14 +52,14 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    fetchData(); // Initial fetch
+    fetchData(); 
   }, []);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === "Enter") {
-        fetchData(); // Fetch data on Enter key press
-        reloadChart(); // Reload chart on Enter key press
+        fetchData(); 
+        reloadChart(); 
       }
     };
 
@@ -68,11 +68,11 @@ const MainPage = () => {
     return () => {
       document.removeEventListener("keypress", handleKeyPress);
     };
-  }, []); // Empty dependency array to ensure this effect runs only once
+  }, []);
 
   useEffect(() => {
-    // Reload chart whenever the exchange changes
-    console.log(`Exchange state in useEffect: ${exchange}`); // Debugging log
+   
+    console.log(`Exchange state in useEffect: ${exchange}`); 
     if (exchange) {
       reloadChart();
     }
@@ -109,11 +109,11 @@ const MainPage = () => {
   // Function to handle change in exchange selection
   const handleExchangeChange = (event) => {
     const selectedExchange = event.target.value;
-    console.log(`Exchange selected: ${selectedExchange}`); // Debugging log
+    console.log(`Exchange selected: ${selectedExchange}`); 
     setExchange(selectedExchange);
     // Immediately log the state value to check if it updates
     setTimeout(() => {
-      console.log(`Exchange state after setExchange: ${exchange}`); // Debugging log
+      console.log(`Exchange state after setExchange: ${exchange}`); 
     }, 0);
   };
 
@@ -131,8 +131,8 @@ const MainPage = () => {
               color="white"
               borderRadius="full"
               style={customStyles}
-              value={exchange} // Value from state
-              onChange={handleExchangeChange} // Handle change event
+              value={exchange} 
+              onChange={handleExchangeChange}
             >
               <option
                 value="NSE"
