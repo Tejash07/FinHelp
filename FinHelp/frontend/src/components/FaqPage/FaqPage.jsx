@@ -82,31 +82,35 @@ const FaqPage = () => {
   const textColor = useColorModeValue('gray.900', 'gray.100');
 
   return (
-    <div className="min-h-screen bg-[#13161F] flex">
+    <div className="min-h-screen bg-[#13161F] flex overflow-hidden">
       <div className="w-1/5"> {/* Adjusted width for LeftDrawer */}
         <LeftDrawer />
       </div>
-      <div className="w-3/5  px-4 max-h-screen overflow-y-auto"> 
+      <div className="w-3/5 flex flex-col justify-center items-center px-4 overflow-hidden">
         <Flex
-          bg="#1B2030"  
+          bg="#1B2030"
           _dark={{
             bg: 'gray.600',
           }}
           justifyContent="center"
           alignItems="center"
-          minHeight="100vh" 
+          height="80vh"
+          width="100%"
           py={5}
+          overflow="hidden"
         >
           <Box
-            bg={'#1B2030'} 
+            bg={'#1B2030'}
             _dark={{
               bg: 'gray.900',
             }}
             rounded="xl"
             shadow="base"
             w="100%"
-            p={6} 
+            p={6}
             maxW="7xl"
+            h="100%"
+            overflowY="auto"
           >
             <Box textAlign="center">
               <chakra.h2
@@ -118,7 +122,7 @@ const FaqPage = () => {
                 lineHeight="8"
                 fontWeight="extrabold"
                 letterSpacing="tight"
-                color="white" 
+                color="white"
                 _dark={{
                   color: 'gray.100',
                 }}
@@ -130,20 +134,21 @@ const FaqPage = () => {
                 maxW="2xl"
                 fontSize="xl"
                 mx="auto"
-                color="white" 
+                color="white"
                 _dark={{
                   color: 'gray.300',
                 }}
               >
-                Lorem ipsum dolor sit amet consect adipisicing elit.
+                Unlocking Financial Clarity: Navigate Your Stock Queries Here!
               </chakra.p>
             </Box>
 
-            <Box mt={8}> 
+            <Box mt={8}>
               <Accordion allowMultiple>
                 <FaqItem
-                  question="What are the security measures in place?"
-                  answer="Our platform uses SSL encryption and complies with PCI DSS standards to secure your data. We regularly update our security protocols and conduct thorough audits to ensure that your information is protected against unauthorized access and data breaches. Our commitment to security allows you to trust us with your sensitive information."
+                  question="Does FINCALCI guarantee the stated returns on my investment?"
+                  answer="Our platform leverages historical data of specific stocks, analyzing their past performance and behaviors within given time periods. While this approach provides valuable insights, it is important to note that it is not infallible and cannot guarantee future stock behavior predictions. The inherent volatility and myriad influencing factors in the stock market mean that predictions based solely on historical data can only offer a limited perspective. Therefore, users should exercise caution and consider multiple factors when making investment decisions, as past performance is not always indicative of future results. 
+                  "
                 />
                 <FaqItem
                   question="What payment methods are accepted?"
@@ -177,13 +182,14 @@ const FaqPage = () => {
                   href="mailto:support@example.com"
                   isExternal
                   fontSize="lg"
-                  color="white"
+                  color="yellow"
+                  textDecoration="underline"
                   _dark={{
                     color: 'white',
                   }}
                   fontWeight="medium"
                   _hover={{
-                    textDecoration: 'none',
+                    color:"#60B0E5"
                   }}
                 >
                   Write to us!
@@ -193,7 +199,7 @@ const FaqPage = () => {
           </Box>
         </Flex>
       </div>
-      <div className="w-1/5 fixed right-0"> 
+      <div className="w-1/5  fixed right-0"> 
         <RightBarFaq />
       </div>
     </div>
