@@ -61,24 +61,26 @@ const Calculator = () => {
     try {
       const savedStockName = localStorage.getItem("savedStockName");
       const investmentPeriod = localStorage.getItem("investmentPeriod");
-      const response = await axios.get(`http://localhost:3000/api/v1/user/stock/${savedStockName}/${investmentPeriod}`);
-      const { stockName, livePrice, startPrice, dayHigh, dayLow } = response.data;
+      const response = await axios.get(
+        `http://localhost:3000/api/v1/user/stock/${savedStockName}/${investmentPeriod}`
+      );
+      const { stockName, livePrice, startPrice, dayHigh, dayLow } =
+        response.data;
       setStockData({ stockName, livePrice, dayHigh, dayLow });
-  
-      // Calculate percentage change
+
       const initialPrice = parseFloat(startPrice);
       const finalPrice = parseFloat(livePrice);
       const change = finalPrice - initialPrice;
-      const percChange = ((change / initialPrice) * 100).toFixed(2); // Convert to string with 2 decimal places
-      setPercChange(parseFloat(percChange)); // Convert back to number for calculations
+      const percChange = ((change / initialPrice) * 100).toFixed(2); 
+      setPercChange(parseFloat(percChange)); 
     } catch (error) {
       console.error("Error fetching stock data:", error);
     }
   };
 
   const customStyles = {
-    backgroundColor: "#13161F", // Change background color to #13161F
-    borderRadius: "9999px", // Full border radius
+    backgroundColor: "#13161F", 
+    borderRadius: "9999px", 
   };
 
   return (
@@ -88,7 +90,7 @@ const Calculator = () => {
         <div className="bg-[#1b2030] text-white flex items-center justify-center ml-40 mr-[20%] mt-5 h-16 shadow-lg rounded-lg text-2xl font-bold ">
           <h1>YOUR FINCALCI</h1>
         </div>
-        <div className="mt-10 flex justify-end pr-96 mr-28">
+        <div className="mt-10 flex justify-end pr-96 mr-20">
           <Stack spacing={3} width="100%" maxWidth="600px">
             <MotionInputGroup
               whileHover={{ scale: 1.05 }}
@@ -105,6 +107,7 @@ const Calculator = () => {
                 placeholder="Enter the stock name"
                 size="lg"
                 color="white"
+                c
                 style={customStyles}
                 value={stockName}
                 onChange={handleStockNameChange}
@@ -113,21 +116,21 @@ const Calculator = () => {
             </MotionInputGroup>
           </Stack>
         </div>
-        <div className="mt-7 flex justify-end pr-96 mr-28">
+        <div className="mt-7 flex justify-end pr-96 mr-20">
           <Stack spacing={3} width="100%" maxWidth="600px">
             <Input
               placeholder="Enter the amount to invest"
               size="lg"
               color="white"
-              backgroundColor="#13161F" // Set background color to #13161F
-              borderRadius="full" // Full border radius
+              backgroundColor="#13161F" 
+              borderRadius="full" 
               style={customStyles}
               value={investmentAmount}
               onChange={handleInvestmentAmountChange}
             />
           </Stack>
         </div>
-        <div className="mt-7 flex justify-end  pr-96 mr-28 ">
+        <div className="mt-7 flex justify-end  pr-96 mr-20 ">
           <Stack spacing={3} width="100%" maxWidth="600px">
             <Select
               placeholder="Enter the period of investment"
@@ -138,62 +141,127 @@ const Calculator = () => {
               value={investmentPeriod}
               onChange={handleInvestmentPeriodChange}
             >
-              <option value="1mo" style={{ backgroundColor: "#13161F", color: "white" }}>
+              <option
+                value="1mo"
+                style={{ backgroundColor: "#13161F", color: "white" }}
+              >
                 1 month
               </option>
-              <option value="3mo" style={{ backgroundColor: "#13161F", color: "white" }}>
+              <option
+                value="3mo"
+                style={{ backgroundColor: "#13161F", color: "white" }}
+              >
                 3 month
               </option>
-              <option value="6mo" style={{ backgroundColor: "#13161F", color: "white" }}>
+              <option
+                value="6mo"
+                style={{ backgroundColor: "#13161F", color: "white" }}
+              >
                 6 month
               </option>
-              <option value="1y" style={{ backgroundColor: "#13161F", color: "white" }}>
+              <option
+                value="1y"
+                style={{ backgroundColor: "#13161F", color: "white" }}
+              >
                 1 year
               </option>
-              <option value="5y" style={{ backgroundColor: "#13161F", color: "white" }}>
+              <option
+                value="5y"
+                style={{ backgroundColor: "#13161F", color: "white" }}
+              >
                 5 years
               </option>
             </Select>
           </Stack>
         </div>
-        <div className="flex flex-row ml-60 mt-20">
-          <div className="flex flex-col text-white w-52 border border-collapse rounded-2xl p-4">
-            <h2 className="text-center font-semibold mb-4">{percChange ? `${(percChange - 3).toFixed(2)}%` : "NA"}</h2>
-            <div className="border border-collapse rounded-2xl p-2 mb-2 flex flex-row items-center">
-              <h1>PnL: </h1>
-              <p>{percChange? ((((percChange - 3) / 100) * parseFloat(localStorage.getItem("investmentAmount"))).toFixed(2))  : "NA"}</p>
-            </div>
-            <div className="border border-collapse rounded-2xl p-2 flex flex-row items-center">
-              <h1>Capital: </h1>
-              <p>{percChange? ((parseFloat(localStorage.getItem("investmentAmount")) + ((percChange - 3) / 100) * parseFloat(localStorage.getItem("investmentAmount"))).toFixed(2))   : "NA"}</p>
 
+        <div className="bg-[#1B2030] w-[71%] size-[45%] mt-[3%] ml-[11%]  rounded-xl flex ">
+        <div className="flex flex-col text-white w-52 border border-collapse border-[#2D5A8C]   border-2 rounded-2xl ml-[7%] mt-[4%] h-[77%] p-4">
+            <h2 className="text-center font-semibold mb-4">
+              {percChange ? `${(percChange - 3).toFixed(2)}%` : "NA"}
+            </h2>
+            <div  style={{ background: 'linear-gradient(to right, #43cea2, #185a9d)' }} className="border border-[#e2f10c]    border-collapse rounded-2xl p-2 mb-2 mt-4 flex flex-row items-center">
+              <h1  >PnL: </h1>
+              <p >
+                {percChange
+                  ? (
+                      ((percChange - 3) / 100) *
+                      parseFloat(localStorage.getItem("investmentAmount"))
+                    ).toFixed(2)
+                  : "NA"}
+              </p>
+            </div>
+            <div style={{ background: 'linear-gradient(to right, #43cea2, #185a9d)' }} className="border border-[#e2f10c] border-collapse rounded-2xl p-2 mt-4 flex flex-row items-center">
+              <h1>Capital: </h1>
+              <p>
+                {percChange
+                  ? (
+                      parseFloat(localStorage.getItem("investmentAmount")) +
+                      ((percChange - 3) / 100) *
+                        parseFloat(localStorage.getItem("investmentAmount"))
+                    ).toFixed(2)
+                  : "NA"}
+              </p>
             </div>
           </div>
-          <div className="flex flex-col text-white w-52 ml-28 border border-collapse rounded-2xl p-4">
-            <h2 className="text-center font-semibold mb-4">{percChange ? `${percChange.toFixed(2)}%` : "NA"}</h2>
-            <div className="border border-collapse rounded-2xl p-2 mb-2 flex flex-row items-center">
+          <div className="flex flex-col text-white w-52 ml-28 border-2 border-[#2D5A8C] border border-collapse rounded-2xl ml-[12%] mt-[4%] h-[77%] p-4">
+            <h2 className="text-center font-semibold mb-4">
+              {percChange ? `${percChange.toFixed(2)}%` : "NA"}
+            </h2>
+            <div style={{ background: 'linear-gradient(to right, #43cea2, #185a9d)' }} className="border border-[#e2f10c] border-collapse rounded-2xl p-2 mt-4 flex flex-row items-center">
               <h1>PnL: </h1>
-              <p>{percChange? (((percChange / 100) * parseFloat(localStorage.getItem("investmentAmount"))).toFixed(2))  : "NA"}</p>
-
+              <p>
+                {percChange
+                  ? (
+                      (percChange / 100) *
+                      parseFloat(localStorage.getItem("investmentAmount"))
+                    ).toFixed(2)
+                  : "NA"}
+              </p>
             </div>
-            <div className="border border-collapse rounded-2xl p-2 flex flex-row items-center">
+            <div style={{ background: 'linear-gradient(to right, #43cea2, #185a9d)' }} className="border border-[#e2f10c] border-collapse rounded-2xl p-2 mt-4 flex flex-row items-center">
               <h1>Capital: </h1>
-              <p>{percChange? ((parseFloat(localStorage.getItem("investmentAmount")) + (percChange / 100) * parseFloat(localStorage.getItem("investmentAmount"))).toFixed(2))   : "NA"}</p>
-
+              <p>
+                {percChange
+                  ? (
+                      parseFloat(localStorage.getItem("investmentAmount")) +
+                      (percChange / 100) *
+                        parseFloat(localStorage.getItem("investmentAmount"))
+                    ).toFixed(2)
+                  : "NA"}
+              </p>
             </div>
           </div>
-          <div className="flex flex-col text-white w-52 ml-28 border border-collapse rounded-2xl p-4 ">
-            <h2 className="text-center font-semibold mb-4">{percChange ? `${(percChange + 3).toFixed(2)}%` : "NA"}</h2>
-            <div className="border border-collapse rounded-2xl p-2 mb-2 flex flex-row items-center">
+          <div className="flex flex-col text-white w-52 ml-28 border border-2 border-[#2D5A8C] border-collapse rounded-2xl ml-[12%]  mt-[4%] h-[77%] p-4 ">
+            <h2 className="text-center font-semibold mb-4">
+              {percChange ? `${(percChange + 3).toFixed(2)}%` : "NA"}
+            </h2>
+            <div style={{ background: 'linear-gradient(to right, #43cea2, #185a9d)' }} className="border border-[#e2f10c] border-collapse rounded-2xl p-2 mt-4 flex flex-row items-center">
               <h1>PnL: </h1>
-              <p>{percChange? ((((percChange + 3) / 100) * parseFloat(localStorage.getItem("investmentAmount"))).toFixed(2))  : "NA"}</p>
-
+              <p>
+                {percChange
+                  ? (
+                      ((percChange + 3) / 100) *
+                      parseFloat(localStorage.getItem("investmentAmount"))
+                    ).toFixed(2)
+                  : "NA"}
+              </p>
             </div>
-            <div className="border border-collapse rounded-2xl p-2 flex flex-row items-center">
+            <div style={{ background: 'linear-gradient(to right, #43cea2, #185a9d)' }} className="border border-[#e2f10c] border-collapse rounded-2xl p-2 mt-4 flex flex-row items-center">
               <h1>Capital: </h1>
-              <p>{percChange? ((parseFloat(localStorage.getItem("investmentAmount")) + ((percChange + 3) / 100) * parseFloat(localStorage.getItem("investmentAmount"))).toFixed(2)) : "NA"}</p>
+              <p>
+                {percChange
+                  ? (
+                      parseFloat(localStorage.getItem("investmentAmount")) +
+                      ((percChange + 3) / 100) *
+                        parseFloat(localStorage.getItem("investmentAmount"))
+                    ).toFixed(2)
+                  : "NA"}
+              </p>
             </div>
           </div>
+
+        
         </div>
       </div>
       <div className="absolute top-0 right-0 -mt-10">
