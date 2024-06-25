@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Stack, Input, Text, Link, useToast } from '@chakra-ui/react';
+import { Button, Stack, Input, Text, Link, useToast,Divider } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import {useTypewriter,Cursor} from 'react-simple-typewriter'
+import FinHelp_transparent from './FinHelp_transparent.png'
 const Landing = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -10,6 +11,8 @@ const Landing = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const toast = useToast();
   const navigate = useNavigate();
+
+
 
   const handleSignUp = async () => {
     if (!email || !username || !password || !confirmPassword) {
@@ -75,13 +78,28 @@ const Landing = () => {
     <div className="bg-[#13161F] text-white min-h-screen flex justify-between">
       <div style={{ width: "50%" }}>
         <div>
-          <img src="https://www.logodesignlove.com/wp-content/uploads/2012/08/microsoft-logo-02.jpeg" alt="Logo" className='size-72 mt-32 ml-52 p-3' />
+        <img src={FinHelp_transparent} alt="Logo" className='size-[90%] mt-[15%] ml-[17%] p-3' />
         </div>
-        <div className='ml-64 size-36 font-bold'>
-          TagLine
+        {/* <div className='ml-64 mt-[10%] size-44 font-bold'>
+          <h1 style={{fontWeight:'bold',color:'white', margin:'50px'}}>
+
+          I'm a 
+          <span style={{fontWeight:'bold',color:'white'}}>
+            {text}
+          </span>
+          <span style={{color:'yellow'}}>
+
+          <Cursor cursorStyle='<'/>
+          </span>
+          </h1>
+        </div> */}
+        <div className='ml-[43%] -mt-[30%] text-3xl  font-semibold  underline text-[yellow]'>
+          You Can Trust Us!!
         </div>
       </div>
-
+      <div className='ml-[9%]'>
+      <Divider color="" orientation='vertical'/>
+      </div>
       <div className="flex flex-col ml-32" style={{ width: "50%", color: 'white' }}>
         <div className='mt-56' style={{ width: "65%" }}>
           <Input
@@ -122,12 +140,15 @@ const Landing = () => {
             color="whiteAlpha.900"
             placeholderTextColor="gray.300"
           />
-          <Stack direction="row" spacing={4} align="center">
-            <Button onClick={handleSignUp} borderRadius="full" bg='white' color='gray.900' variant="ghost">
+          <div className='ml-[40%] mt-5'> 
+
+          <Stack direction="row" spacing={4}  align="center">
+            <Button style={{ background: 'linear-gradient(to right, #43cea2, #185a9d)' }} onClick={handleSignUp} borderRadius="full"   variant="ghost">
               Sign Up
             </Button>
           </Stack>
-          <Text>
+          </div>
+          <Text className='mt-5'>
             Already have an account{': '}
             <Link color='blue.500' href='/login'>
               Login
