@@ -28,7 +28,7 @@ function Right() {
     alignItems: 'center',
     textDecoration: 'none',
     color: 'white', 
-    boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.6)', // Apply shadow here
+    boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.6)',
   };
 
   return (
