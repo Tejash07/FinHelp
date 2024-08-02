@@ -1,0 +1,36 @@
+{
+    "routes": [
+        {
+            "src": "/",
+            "dest": "/"
+        },
+        {
+            "src": "/login",
+            "dest": "/"
+        },
+        {
+            "src": "/home",
+            "dest": "/"
+        },
+        {
+            "src": "/home/profile",
+            "dest": "/"
+        },
+        {
+            "src": "/home/main",
+            "dest": "/"
+        },
+        {
+            "src": "/home/faq",
+            "dest": "/"
+        },
+        {
+            "src": "/home/calculator",
+            "dest": "/"
+        },
+        {
+            "src": "/home/financial",
+            "dest": "/"
+        }
+    ]
+}
